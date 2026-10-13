@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure Project Delay Risk Assessment</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <button id="sidebarOpen" class="sidebar-open" aria-label="Open sidebar">
+        ☰
+    </button>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-mark">GOI</div>
+            <div class="brand-text">
+                <div class="brand-hindi">भारत सरकार</div>
+                <div class="brand-title">GOVERNMENT<br>OF INDIA</div>
+            </div>
+        </div>
+
+        <button id="sidebarCollapse" class="collapse-button" aria-label="Hide sidebar">☰</button>
+
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-target="dashboardSection"><span>⌂</span><span>Dashboard</span></button>
+            <button class="nav-item" data-target="assessmentSection"><span>◇</span><span>Risk Assessment</span></button>
+            <button class="nav-item" data-target="analyticsSection"><span>▥</span><span>Analytics &amp; Insights</span></button>
+            <button class="nav-item" data-target="aboutSection"><span>ⓘ</span><span>About System</span></button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <strong>Ministry of Rural Development</strong>
+            <small>Infrastructure Risk Assessment System</small>
+        </div>
+    </aside>
+
+    <main id="mainContent" class="main-content">
+        <header class="top-header">
+            <div class="government-identity">
+                <div class="ashoka-placeholder">ASHOKA</div>
+                <div class="identity-divider"></div>
+                <div>
+                    <div class="ministry-name">Ministry of Rural Development</div>
+                    <div class="ministry-hindi">ग्रामीण विकास मंत्रालय</div>
+                </div>
+            </div>
+
+            <div class="header-search">
+                <input id="globalSearch" type="search" placeholder="Search projects, states, sectors, agencies...">
+            </div>
+
+            <div class="officer-area">
+                <div class="officer-avatar">MO</div>
+                <div class="officer-info">
+                    <strong>MoRD Officer</strong>
+                    <span>Administrator</span>
+                </div>
+            </div>
+        </header>
+
+        <section id="dashboardSection" class="page-section">
+            <div class="hero">
+                <div class="eyebrow">NATIONAL INFRASTRUCTURE MONITORING</div>
+                <h1>Infrastructure Project Delay Risk Assessment</h1>
+                <p>Data-driven insights for early identification of infrastructure project delays.</p>
+            </div>
+
+            <div class="kpi-grid">
+                <article class="kpi-card">
+                    <span>Total Projects</span>
+                    <strong id="totalProjects">—</strong>
+                    <small>Projects in dataset</small>
+                </article>
+                <article class="kpi-card">
+                    <span>Delayed Projects</span>
+                    <strong id="delayedProjects">—</strong>
+                    <small>Recorded as delayed</small>
+                </article>
+                <article class="kpi-card">
+                    <span>On-Time Projects</span>
+                    <strong id="onTimeProjects">—</strong>
+                    <small>Recorded as on schedule</small>
+                </article>
+                <article class="kpi-card">
+                    <span>Delay Rate</span>
+                    <strong id="delayRate">—</strong>
+                    <small>Across available records</small>
+                </article>
+            </div>
+
+            <div class="dashboard-grid">
+                
+            </div>
+        </section>
+
+        <section id="assessmentSection" class="page-section">
+            <div class="section-heading">
+                <div class="section-number">1</div>
+                <div>
+                    <div class="eyebrow">PREDICTIVE MODEL</div>
+                    <h2>Project Risk Assessment</h2>
+                    <p>Enter project characteristics to estimate delay risk.</p>
+                </div>
+            </div>
+
+            <div class="assessment-grid">
+                <form id="assessmentForm" class="panel">
+                    <h3>Project Details</h3>
+
+                    <div class="form-grid">
+                        <label>Sector
+                            <select id="sectorInput" required>
+                                <option value="">Loading sectors…</option>
+                            </select>
+                        </label>
+
+                        <label>Implementing Agency
+                            <select id="agencyInput" required>
+                                <option value="">Select sector first</option>
+                            </select>
+                        </label>
+
+                        <label>State
+                            <select id="stateInput" required>
+                                <option value="">Loading states…</option>
+                            </select>
+                        </label>
+
+                        <label>Project Cost (₹ crore)
+                            <input id="costInput" type="number" min="0" step="any" required placeholder="e.g. 350">
+                        </label>
+
+                        <label>Approval Year
+                            <input id="yearInput" type="number" min="1900" max="2100" required>
+                        </label>
+
+                        <label>Approval Month
+                            <select id="monthInput" required>
+                                <option value="">Select month</option>
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </label>
+
+                        <label>Planned Duration (months)
+                            <input id="durationInput" type="number" min="1" required placeholder="e.g. 24">
+                        </label>
+                    </div>
+
+                    <button id="predictButton" class="primary-button" type="submit">Predict delay risk →</button>
+                    <button id="clearAssessmentButton" class="secondary-button" type="button">Clear form</button>
+                    <p id="assessmentMessage" class="form-message" role="status"></p>
+                </form>
+
+                <article class="panel prediction-panel">
+                    <div class="eyebrow">MODEL OUTPUT</div>
+                    <h2>Prediction Result</h2>
+
+                    <div id="predictionEmpty" class="empty-state">
+                        <div class="empty-icon">↗</div>
+                        <h3>Ready for assessment</h3>
+                        <p>Enter the project details and select Predict delay risk to view the model output.</p>
+                    </div>
+
+                    <div id="predictionResult" hidden>
+                        <span class="result-label">Estimated delay probability</span>
+                        <strong id="resultProbability" class="result-probability">—</strong>
+                        <div class="progress-track">
+                            <div id="resultProgress" class="progress-fill"></div>
+                        </div>
+
+                        <div class="result-details">
+                            <div>
+                                <span>Risk score</span>
+                                <strong id="resultScore">—</strong>
+                            </div>
+                            <div>
+                                <span>Risk level</span>
+                                <strong id="resultRiskLevel" class="risk-badge">—</strong>
+                            </div>
+                        </div>
+
+                        <h3 id="resultPrediction">Prediction</h3>
+                        <p id="resultDescription"></p>
+
+                        <div class="potential-causes">
+                            <h3>Potential Causes to Investigate</h3>
+                            <p class="muted">These are general investigation prompts, not causes confirmed by the model.</p>
+                            <ol>
+                                <li>Land acquisition and right-of-way clearance</li>
+                                <li>Environmental or statutory approvals</li>
+                                <li>Funding and budget availability</li>
+                                <li>Contractor and execution progress</li>
+                                <li>Administrative coordination and approvals</li>
+                            </ol>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+        <section id="analyticsSection" class="page-section">
+            <div class="section-heading">
+                <div class="section-number">3</div>
+                <div>
+                    <div class="eyebrow">DATA INSIGHTS</div>
+                    <h2>Analytics &amp; Insights</h2>
+                    <p>Explore project distribution across sectors and approval years.</p>
+                </div>
+            </div>
+
+            <div class="analytics-grid">
+                <article class="panel">
+                    <h3>Projects by Sector</h3>
+                    <div class="chart-container"><canvas id="sectorChart"></canvas></div>
+                </article>
+                <article class="panel">
+                    <h3>Projects by Approval Year</h3>
+                    <div class="chart-container"><canvas id="yearChart"></canvas></div>
+                </article>
+            </div>
+
+            <div class="analytics-grid additional-analytics">
+    <article class="panel">
+        <h3>Project Delay Distribution</h3>
+        <p>Delayed vs. non-delayed projects</p>
+        <div class="chart-container">
+            <canvas id="delayDistributionChart"></canvas>
+        </div>
+    </article>
+
+    <article class="panel">
+        <h3>Project Cost Distribution</h3>
+        <p>Number of projects across cost ranges</p>
+        <div class="chart-container">
+            <canvas id="costHistogramChart"></canvas>
+        </div>
+    </article>
+</div>
+
+<article class="panel scatter-panel">
+    <h3>Project Cost vs. Planned Duration</h3>
+    <p>Each point represents one project.</p>
+    <div class="chart-container">
+        <canvas id="costDurationChart"></canvas>
+    </div>
+</article>
+
+            <article class="panel">
+                <h3>Sector Summary</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead><tr><th>Sector</th><th>Projects</th><th>Delayed Projects</th><th>Delay Rate</th></tr></thead>
+                        <tbody id="sectorTable"><tr><td colspan="4">Loading analytics…</td></tr></tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <section id="aboutSection" class="page-section">
+            <div class="section-heading">
+                <div class="section-number">i</div>
+                <div>
+                    <div class="eyebrow">SYSTEM INFORMATION</div>
+                    <h2>About the System</h2>
+                </div>
+            </div>
+            <article class="panel">
+                <p>This dashboard demonstrates predictive analytics for early identification of infrastructure project delay risk.</p>
+                <div class="about-grid">
+                    <div><strong>Dataset</strong><span>MoSPI Flash Report, February 2025</span></div>
+                    <div><strong>Projects</strong><span id="analyticsProjectCount">—</span></div>
+                    <div><strong>Prediction Model</strong><span>Logistic Regression</span></div>
+                    <div><strong>Risk Scale</strong><span>0–100</span></div>
+                </div>
+            </article>
+        </section>
+
+        <footer class="site-footer">
+            <span>Infrastructure Project Delay Risk Assessment</span>
+            <span>Decision-support demonstration system</span>
+        </footer>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script src="/script.js?v=20"></script>
+</body>
+</html>

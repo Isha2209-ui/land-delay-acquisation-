@@ -1,0 +1,21 @@
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Jupyter temporary files
+.ipynb_checkpoints/
+
+# macOS files
+.DS_Store
+
+# Environment variables and secrets
+.env
+
+# Test and coverage cache
+.pytest_cache/
+.coverage
