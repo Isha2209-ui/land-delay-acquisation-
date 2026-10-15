@@ -6,6 +6,14 @@ The **Predictive Analytics System for Early Detection of Land Acquisition Delays
 
 The system uses historical project information to predict delay status, estimate delay probability, calculate a risk score, and categorize projects into risk levels. It also provides general recommendations to help users identify areas that may require further investigation.
 
+**Implementation Details**
+
+The primary implementation of this predictive analytics project is carried out in the Jupyter Notebook (`land_delay_analysis_fixed.ipynb`), which contains the main workflow for data analysis, preprocessing, model training, feature selection and evaluation.
+
+The remaining Python scripts and supporting files are organised separately to perform individual tasks, such as data preparation, feature selection, model testing and prediction. The saved model (`land_delay_model.pkl`) is used to generate predictions without retraining the model each time. The terminal-based prediction script and web dashboard provide additional ways to use the trained model.
+
+Thus, the Jupyter Notebook serves as the main development and analysis component, while the other files support the overall implementation.
+
 ## 2. Problem Statement
 
 Infrastructure project delays can affect completion schedules, budgets, and resource planning. Identifying potentially delayed projects early can help authorities prioritize monitoring and investigate possible bottlenecks.
