@@ -8,7 +8,7 @@ The system uses historical project information to predict delay status, estimate
 
 **Implementation Details**
 
-The primary implementation of this predictive analytics project is carried out in the Jupyter Notebook (`land_delay_analysis_fixed.ipynb`), which contains the main workflow for data analysis, preprocessing, model training, feature selection and evaluation.
+The primary implementation of this predictive analytics project is carried out in the JUPYTER NOTEBOOK. (`land_delay_analysis_fixed.ipynb`), which contains the main workflow for data analysis, preprocessing, model training, feature selection and evaluation.
 
 The remaining Python scripts and supporting files are organised separately to perform individual tasks, such as data preparation, feature selection, model testing and prediction. The saved model (`land_delay_model.pkl`) is used to generate predictions without retraining the model each time. The terminal-based prediction script and web dashboard provide additional ways to use the trained model.
 
